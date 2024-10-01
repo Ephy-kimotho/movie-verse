@@ -21,7 +21,7 @@ export default {
         cinema: "url('./src/assets/Cinema.png')",
       },
       boxShadow: {
-        overlay: "inset 0 0 0 1000px rgba(0,0,0,0.7)",
+        overlay: "inset 0 0 0 1000px rgba(0,0,0,0.78)",
       },
       backgroundPosition: {
         "m-center": "65%",

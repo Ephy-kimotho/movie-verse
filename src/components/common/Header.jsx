@@ -37,7 +37,7 @@ function Header() {
                   ? "text-tomato font-bold text-lg sm:text-xl tracking-wide"
                   : "text-night font-bold text-lg sm:text-xl tracking-wide"
               }
-              onClick={() => handleToggle()}
+              onClick={() => setIsOpen(false)}
             >
               Home
             </NavLink>
@@ -50,7 +50,7 @@ function Header() {
                   ? "text-tomato font-bold text-lg sm:text-xl tracking-wide"
                   : "text-night font-bold text-lg sm:text-xl tracking-wide"
               }
-              onClick={() => handleToggle()}
+              onClick={() => setIsOpen(false)}
             >
               Movies
             </NavLink>
@@ -63,7 +63,7 @@ function Header() {
                   ? "text-tomato font-bold text-lg sm:text-xl tracking-wide"
                   : "text-night font-bold text-lg sm:text-xl tracking-wide"
               }
-              onClick={() => handleToggle()}
+              onClick={() => setIsOpen(false)}
             >
               Contact
             </NavLink>
