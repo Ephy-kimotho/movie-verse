@@ -1,13 +1,37 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./layout/Layout";
+import HomePage from "./pages/HomePage";
+import MoviesPage from "./pages/MoviesPage";
+import ContactPage from "./pages/ContactPage";
+import NotFound from "./pages/NotFound";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "movies",
+        element: <MoviesPage />,
+      },
+      {
+        path: "contact",
+        element: <ContactPage />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
+  },
+]);
+
 function App() {
-  return (
-    <div className="relative h-screen bg-cinema bg-cover bg-m-center sm:bg-center bg-no-repeat shadow-overlay">
-      <div className="relative z-10">
-        <h1 className="font-bold text-3xl text-gray uppercase">
-          Discover movies like never before.
-        </h1>
-      </div>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

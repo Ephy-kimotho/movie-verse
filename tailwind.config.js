@@ -15,16 +15,17 @@ export default {
         cream: "#E3D5CA",
         lightOrange: "#E07A5F",
         darkBlue: "#0B2545",
+        lightGray: "#ECEAEA",
       },
-      backgroundImage: {'bottom-4': 'center bottom 1rem',
+      backgroundImage: {
         cinema: "url('./src/assets/Cinema.png')",
       },
-      boxShadow:{
-        overlay: 'inset 0 0 0 1000px rgba(0,0,0,0.7)'
+      boxShadow: {
+        overlay: "inset 0 0 0 1000px rgba(0,0,0,0.7)",
       },
-      backgroundPosition:{
-        'm-center': '65%',
-      }
+      backgroundPosition: {
+        "m-center": "65%",
+      },
     },
   },
   plugins: [],
