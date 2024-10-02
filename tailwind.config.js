@@ -26,6 +26,9 @@ export default {
       backgroundPosition: {
         "m-center": "65%",
       },
+      spacing:{
+        330:"330px"
+      }
     },
   },
   plugins: [],
