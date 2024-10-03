@@ -38,7 +38,7 @@ function Movies() {
     setSearchTerm("");
   }
 
-    return (
+  return (
     <section className="min-h-screen">
       <form className="flex flex-col sm:flex-row mt-10 justify-center gap-4 w-4/5 mx-auto">
         <input
@@ -80,6 +80,7 @@ function Movies() {
           data.Search.map((movie) => (
             <MovieCard
               key={movie.imdbID}
+              movieId={movie.imdbID}
               poster={movie.Poster}
               title={movie.Title}
               year={movie.Year}

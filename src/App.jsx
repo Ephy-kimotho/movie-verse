@@ -1,11 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Layout from "./layout/Layout";
 import HomePage from "./pages/HomePage";
 import MoviesPage from "./pages/MoviesPage";
+import MovieDetailsPage from "./pages/MovieDetailsPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
+        path: "movies/:movieId",
+        element: <MovieDetailsPage />,
+      },
+      {
         path: "*",
         element: <NotFound />,
       },
@@ -38,7 +43,7 @@ function App() {
   return (
     <QueryClientProvider client={client}>
       <RouterProvider router={router} />
-      <ReactQueryDevtools/>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }
