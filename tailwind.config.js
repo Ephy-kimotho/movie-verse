@@ -27,7 +27,8 @@ export default {
         "m-center": "65%",
       },
       spacing:{
-        330:"330px"
+        330:"330px",
+        550:"550px"
       }
     },
   },
