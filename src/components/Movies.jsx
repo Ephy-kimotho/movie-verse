@@ -8,6 +8,7 @@ import useMovieStore from "../stores/useMovieStore";
 
 async function getMovies(term) {
   const apiKey = import.meta.env.VITE_OMDB_API_KEY;
+  term = term.toLowerCase().split(" ").join("+");
   const url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${term}`;
   const res = await fetch(url);
 
@@ -39,7 +40,7 @@ function Movies() {
     e.preventDefault();
     if (debouncedName) {
       // Update the movie name in useMovieStore to the debounced vale
-      setMovieName(debouncedName.toLowerCase().split(" ").join("+"));
+      setMovieName(debouncedName);
       // clear the input
       setTempMovieName("");
     }
