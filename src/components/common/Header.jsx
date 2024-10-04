@@ -11,7 +11,7 @@ function Header() {
 
   return (
     <header className="bg-gray py-4 px-2 sm:py-3 sm:px-8 flex justify-between items-center flex-wrap">
-      <h1 className="text-2xl sm:text-4xl text-tomato font-karla font-bold drop-shadow-lg">
+      <h1 className="text-3xl sm:text-4xl text-tomato font-karla font-bold drop-shadow-lg">
         MovieVerse
       </h1>
 
@@ -47,8 +47,8 @@ function Header() {
               to="movies"
               className={({ isActive }) =>
                 isActive
-                  ? "text-tomato font-bold text-lg sm:text-xl tracking-wide"
-                  : "text-night font-bold text-lg sm:text-xl tracking-wide"
+                  ? "text-tomato font-bold text-xl tracking-wide"
+                  : "text-night font-bold text-xl tracking-wide"
               }
               onClick={() => setIsOpen(false)}
             >

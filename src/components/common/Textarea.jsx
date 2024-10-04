@@ -5,7 +5,7 @@ function Textarea({ label, ...props }) {
   const [field, meta] = useField(props);
   return (
     <div className="flex flex-col">
-      <label className="font-bold text-night text-base sm:text-lg mb-1">
+      <label className="font-bold text-night text-lg sm:text-xl mb-1">
         {label}:
       </label>
       <textarea
@@ -16,7 +16,7 @@ function Textarea({ label, ...props }) {
         }`}
       />
       {meta.error && meta.touched && (
-        <p className="text-tomato text-lg font-bold font-karla">{meta.error}</p>
+        <p className="text-tomato text-base font-bold font-karla">{meta.error}</p>
       )}
     </div>
   );

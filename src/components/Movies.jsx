@@ -46,7 +46,7 @@ function Movies() {
 
   return (
     <section className="min-h-screen">
-      <h2 className="text-darkBlue text-lg sm:text-28 font-roboto uppercase font-bold text-center mt-5">
+      <h2 className="text-darkBlue text-lg px-4  sm:text-28 font-roboto uppercase font-bold text-center mt-5">
         Click movie tile to view more details
       </h2>
       <form
@@ -82,7 +82,7 @@ function Movies() {
 
       {data?.Error && (
         <h2 className="text-tomato text-base sm:text-ld uppercase font-bold text-center mt-8">
-          Movie Not found !
+         Couldn&apos;t find movie, try another!
         </h2>
       )}
 
