@@ -46,7 +46,7 @@ function Movies() {
   }
 
   // use movie name from useMovieStore to make API calls
-  const { data, error, isSuccess, isError, isLoading } = useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: ["movies", movieName],
     queryFn: () => getMovies(movieName),
     /* Only fetch when movieName is truthy */
@@ -54,14 +54,6 @@ function Movies() {
     /* consider data fresh for 5 minutes before refetching */
     staleTime: 300000,
   });
-
-  if (isSuccess) {
-    console.log("Success: ", data);
-  }
-
-  if (error) {
-    console.error("Error: ", error);
-  }
 
   return (
     <section className="min-h-screen">

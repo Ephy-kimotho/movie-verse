@@ -78,7 +78,7 @@ function MovieDetails() {
               </li>
               <li className="text-xl sm:text-2xl font-karla text-night">
                 <span className="font-bold italic">Release year: </span>
-                {data.Year}
+                {data.Year.slice(0, 4)}
               </li>
               <li className="text-xl sm:text-2xl font-karla text-night">
                 <span className="font-bold italic">Rating: </span>
