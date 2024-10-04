@@ -6,7 +6,7 @@ import * as Yup from "yup";
 
 function handleSubmit(values, actions) {
   console.log(values);
-  console.log("Actions: ", actions);
+  actions.resetForm();
 }
 
 const contactShema = Yup.object({

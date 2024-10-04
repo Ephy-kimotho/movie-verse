@@ -11,7 +11,7 @@ function Input({ label, ...props }) {
       <input
         {...props}
         {...field}
-        className={`border-none bg-white text-base rounded-md text-night shadow-md py-4 pl-3 sm:py-5 sm:pl-5 ${
+        className={`border-none bg-white text-base sm:text-lg rounded-md text-night shadow-md py-4 pl-3 sm:py-5 sm:pl-5  ${
           meta.touched && meta.error && "outline-tomato outline outline-2"
         }`}
       />

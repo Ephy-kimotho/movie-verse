@@ -11,7 +11,7 @@ function Textarea({ label, ...props }) {
       <textarea
         {...props}
         {...field}
-        className={`border-none bg-white text-base text-night shadow-md py-4 pl-3 sm:pl-5 h-40 rounded-md  ${
+        className={`border-none bg-white text-base sm:text-lg text-night shadow-md py-4 pl-3 sm:pl-5 h-40 rounded-md  ${
           meta.touched && meta.error && "outline-tomato outline outline-2"
         }`}
       />

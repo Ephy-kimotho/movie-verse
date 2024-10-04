@@ -7,7 +7,7 @@ function MovieDetails() {
 
   async function getMovieInfo() {
     const apiKey = import.meta.env.VITE_OMDB_API_KEY;
-    const url = `http://www.omdbapi.com/?apikey=${apiKey}&i=${movieId}`;
+    const url = `https://www.omdbapi.com/?apikey=${apiKey}&i=${movieId}`;
 
     const res = await fetch(url);
 

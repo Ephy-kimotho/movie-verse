@@ -18,10 +18,10 @@ export default {
         lightGray: "#ECEAEA",
       },
       backgroundImage: {
-        cinema: "url('./src/assets/Cinema.png')",
+        cinema: "url('/Cinema.png')",
       },
       boxShadow: {
-        overlay: "inset 0 0 0 1000px rgba(0,0,0,0.78)",
+        overlay: "inset 0 0 0 1000px rgba(0,0,0,0.75)",
       },
       backgroundPosition: {
         "m-center": "65%",

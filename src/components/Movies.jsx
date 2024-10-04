@@ -7,7 +7,7 @@ import MovieCard from "./MovieCard";
 async function getMovies(term) {
   const apiKey = import.meta.env.VITE_OMDB_API_KEY;
   term = term.toLowerCase().split(" ").join("+");
-  const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${
+  const url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${
     term || "avengers"
   }`;
   const res = await fetch(url);
@@ -24,7 +24,7 @@ function Movies() {
   const [submittedTerm, setSubmittedTerm] = useState("avengers");
   const debouncedValue = useDebounce(searchTerm, 1000);
 
-  const { data, isError, isFetching } = useQuery({
+  const { data, error, isError, isFetching } = useQuery({
     queryKey: ["movies", submittedTerm],
     queryFn: () => getMovies(submittedTerm),
     enabled: Boolean(submittedTerm),
@@ -36,6 +36,10 @@ function Movies() {
       setSubmittedTerm(debouncedValue);
     }
     setSearchTerm("");
+  }
+
+  if (isError) {
+    console.log("Error: ", error);
   }
 
   return (
