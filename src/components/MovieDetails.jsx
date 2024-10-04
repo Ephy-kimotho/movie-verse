@@ -12,7 +12,7 @@ const loaderStyles = {
 
 function MovieDetails() {
   const { movieId } = useParams();
-  const { searchQuery } = useMovieStore();
+  const { movieName } = useMovieStore();
 
   async function getMovieInfo() {
     const apiKey = import.meta.env.VITE_OMDB_API_KEY;
@@ -60,7 +60,7 @@ function MovieDetails() {
         relative="path"
         className="mb-2 text-darkBlue cursor-pointer font-bold text-xl hover:underline"
       >
-        Back to {searchQuery} movies
+        Back to {movieName} movies
       </Link>
       {data && (
         <article className="mt-2">
