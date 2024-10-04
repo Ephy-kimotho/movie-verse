@@ -26,10 +26,13 @@ export default {
       backgroundPosition: {
         "m-center": "65%",
       },
-      spacing:{
-        330:"330px",
-        550:"550px"
-      }
+      spacing: {
+        330: "330px",
+        550: "550px",
+      },
+      fontSize: {
+        28: "28px",
+      },
     },
   },
   plugins: [],

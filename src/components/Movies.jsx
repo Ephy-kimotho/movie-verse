@@ -46,8 +46,11 @@ function Movies() {
 
   return (
     <section className="min-h-screen">
+      <h2 className="text-darkBlue text-lg sm:text-28 font-roboto uppercase font-bold text-center mt-5">
+        Click movie tile to view more details
+      </h2>
       <form
-        className="flex flex-col sm:flex-row mt-10 justify-center gap-4 w-4/5 mx-auto"
+        className="flex flex-col sm:flex-row mt-4 justify-center gap-4 w-4/5 mx-auto"
         autoComplete="off"
       >
         <input
@@ -55,7 +58,7 @@ function Movies() {
           name="searchterm"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Enter movie name.."
+          placeholder="Search movie by name..."
           className="text-night text-lg py-3 pl-2 sm:py-3 sm:px-4 outline-none focus:shadow-md rounded font-semibold"
         />
         <Button
@@ -72,13 +75,13 @@ function Movies() {
       )}
 
       {isError && (
-        <h2 className="text-tomato text-base sm:text-md uppercase font-bold text-center mt-8">
+        <h2 className="text-tomato text-base sm:text-lg uppercase font-bold text-center mt-8">
           Failed to fetch movie, try again later!
         </h2>
       )}
 
       {data?.Error && (
-        <h2 className="text-tomato text-base sm:text-md uppercase font-bold text-center mt-8">
+        <h2 className="text-tomato text-base sm:text-ld uppercase font-bold text-center mt-8">
           Movie Not found !
         </h2>
       )}
