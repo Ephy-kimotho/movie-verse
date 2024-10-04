@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { HashLoader } from "react-spinners";
 import useDebounce from "../hooks/useDebounce";
 import MovieCard from "./MovieCard";
 import Button from "./common/Button";
@@ -17,6 +18,12 @@ async function getMovies(term) {
 
   return res.json();
 }
+
+const loaderStyles = {
+  display: "block",
+  marginInline: "auto",
+  marginTop: "2.5rem",
+};
 
 function Movies() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -39,7 +46,10 @@ function Movies() {
 
   return (
     <section className="min-h-screen">
-      <form className="flex flex-col sm:flex-row mt-10 justify-center gap-4 w-4/5 mx-auto" autoComplete="off">
+      <form
+        className="flex flex-col sm:flex-row mt-10 justify-center gap-4 w-4/5 mx-auto"
+        autoComplete="off"
+      >
         <input
           type="text"
           name="searchterm"
@@ -56,10 +66,9 @@ function Movies() {
           Search
         </Button>
       </form>
+
       {isLoading && (
-        <h2 className="text-darkBlue text-base sm:text-md uppercase font-bold text-center mt-8">
-          Loading movies...
-        </h2>
+        <HashLoader cssOverride={loaderStyles} color="#0B2545" size={35} />
       )}
 
       {isError && (

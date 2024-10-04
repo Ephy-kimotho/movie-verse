@@ -1,9 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { HashLoader } from "react-spinners";
+import useMovieStore from "../stores/useMovieStore";
+
+const loaderStyles = {
+  display: "block",
+  marginInline: "auto",
+  marginTop: "2.5rem",
+};
 
 function MovieDetails() {
   const { movieId } = useParams();
+  const { searchQuery } = useMovieStore();
 
   async function getMovieInfo() {
     const apiKey = import.meta.env.VITE_OMDB_API_KEY;
@@ -18,16 +27,19 @@ function MovieDetails() {
     return res.json();
   }
 
-  const { data, error, isFetching } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["movies", movieId],
     queryFn: getMovieInfo,
   });
 
-  if (isFetching) {
+  if (isLoading) {
     return (
-      <h2 className="text-darkBlue text-base sm:text-md uppercase font-bold text-center mt-10">
-        Loading movie info
-      </h2>
+      <>
+        <h2 className="text-darkBlue text-base sm:text-xl uppercase font-bold text-center mt-8">
+          Loading movie info...
+        </h2>
+        <HashLoader cssOverride={loaderStyles} color="#0B2545" size={50} />
+      </>
     );
   }
 
@@ -46,12 +58,12 @@ function MovieDetails() {
       <Link
         to=".."
         relative="path"
-        className="mb-2 text-darkBlue hover:underline cursor-pointer text-lg font-bold block"
+        className="mb-2 text-darkBlue cursor-pointer font-bold text-lg hover:underline"
       >
-        Back to movies
+        Back to {searchQuery} movies
       </Link>
       {data && (
-        <article key={data.imdbID}>
+        <article className="mt-2">
           <div className="flex flex-col gap-5 sm:flex-row">
             <img
               src={data.Poster}
