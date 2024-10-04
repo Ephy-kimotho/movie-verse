@@ -41,13 +41,6 @@ function MovieDetails() {
       </div>
     );
   }
-
-  if (error) {
-    console.error("Error: ", error.message);
-  } else {
-    console.log("Success: ", data);
-  }
-
   return (
     <section className=" w-4/5 mx-auto my-5">
       <Link

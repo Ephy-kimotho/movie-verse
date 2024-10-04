@@ -1,15 +1,14 @@
-import Button from "./common/Button";
-import useDebounce from "../hooks/useDebounce";
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useDebounce from "../hooks/useDebounce";
 import MovieCard from "./MovieCard";
+import Button from "./common/Button";
+import useMovieStore from "../stores/useMovieStore";
 
 async function getMovies(term) {
   const apiKey = import.meta.env.VITE_OMDB_API_KEY;
   term = term.toLowerCase().split(" ").join("+");
-  const url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${
-    term || "avengers"
-  }`;
+  const url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${term}`;
   const res = await fetch(url);
 
   if (!res.ok) {
@@ -21,30 +20,26 @@ async function getMovies(term) {
 
 function Movies() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [submittedTerm, setSubmittedTerm] = useState("avengers");
-  const debouncedValue = useDebounce(searchTerm, 1000);
+  const debouncedValue = useDebounce(searchTerm, 500);
+  const { searchQuery, setSearchQuery } = useMovieStore();
 
-  const { data, error, isError, isFetching } = useQuery({
-    queryKey: ["movies", submittedTerm],
-    queryFn: () => getMovies(submittedTerm),
-    enabled: Boolean(submittedTerm),
+  const { data, isError, isLoading } = useQuery({
+    queryKey: ["movies", searchQuery],
+    queryFn: () => getMovies(searchQuery),
+    enabled: Boolean(searchQuery),
   });
 
   function handleClick(e) {
     e.preventDefault();
     if (debouncedValue) {
-      setSubmittedTerm(debouncedValue);
+      setSearchQuery(debouncedValue);
     }
     setSearchTerm("");
   }
 
-  if (isError) {
-    console.log("Error: ", error);
-  }
-
   return (
     <section className="min-h-screen">
-      <form className="flex flex-col sm:flex-row mt-10 justify-center gap-4 w-4/5 mx-auto">
+      <form className="flex flex-col sm:flex-row mt-10 justify-center gap-4 w-4/5 mx-auto" autoComplete="off">
         <input
           type="text"
           name="searchterm"
@@ -61,7 +56,7 @@ function Movies() {
           Search
         </Button>
       </form>
-      {isFetching && (
+      {isLoading && (
         <h2 className="text-darkBlue text-base sm:text-md uppercase font-bold text-center mt-8">
           Loading movies...
         </h2>
@@ -69,7 +64,7 @@ function Movies() {
 
       {isError && (
         <h2 className="text-tomato text-base sm:text-md uppercase font-bold text-center mt-8">
-          Could not find movie, try again later!
+          Failed to fetch movie, try again later!
         </h2>
       )}
 
