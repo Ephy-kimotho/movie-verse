@@ -8,7 +8,6 @@ import useMovieStore from "../stores/useMovieStore";
 
 async function getMovies(term) {
   const apiKey = import.meta.env.VITE_OMDB_API_KEY;
-  term = term.toLowerCase().split(" ").join("+");
   const url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${term}`;
   const res = await fetch(url);
 
@@ -26,27 +25,47 @@ const loaderStyles = {
 };
 
 function Movies() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const debouncedValue = useDebounce(searchTerm, 500);
-  const { searchQuery, setSearchQuery } = useMovieStore();
+  // Temporary movie name controlling the input
+  const [tempMovieName, setTempMovieName] = useState("");
 
-  const { data, isError, isLoading } = useQuery({
-    queryKey: ["movies", searchQuery],
-    queryFn: () => getMovies(searchQuery),
-    enabled: Boolean(searchQuery),
-  });
+  // Debouncing the temporary movie name
+  const debouncedName = useDebounce(tempMovieName, 400);
 
+  // Get the movie name from zustand store and it's setter function
+  const { movieName, setMovieName } = useMovieStore();
+
+  // update movieName in Zustand
   function handleClick(e) {
     e.preventDefault();
-    if (debouncedValue) {
-      setSearchQuery(debouncedValue);
+    if (debouncedName) {
+      // Update the movie name in useMovieStore to the debounced vale
+      setMovieName(debouncedName.toLowerCase().split(" ").join("+"));
+      // clear the input
+      setTempMovieName("");
     }
-    setSearchTerm("");
+  }
+
+  // use movie name from useMovieStore to make API calls
+  const { data, error, isSuccess, isError, isLoading } = useQuery({
+    queryKey: ["movies", movieName],
+    queryFn: () => getMovies(movieName),
+    /* Only fetch when movieName is truthy */
+    enabled: Boolean(movieName),
+    /* consider data fresh for 5 minutes before refetching */
+    staleTime: 300000,
+  });
+
+  if (isSuccess) {
+    console.log("Success: ", data);
+  }
+
+  if (error) {
+    console.error("Error: ", error);
   }
 
   return (
     <section className="min-h-screen">
-      <h2 className="text-darkBlue text-lg px-4  sm:text-28 font-roboto uppercase font-bold text-center mt-5">
+      <h2 className="text-darkBlue text-lg px-2  sm:text-28 font-roboto uppercase font-bold text-center mt-5">
         Click movie tile to view more details
       </h2>
       <form
@@ -56,10 +75,10 @@ function Movies() {
         <input
           type="text"
           name="searchterm"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={tempMovieName}
+          onChange={(e) => setTempMovieName(e.target.value)}
           placeholder="Search movie by name..."
-          className="text-night text-lg py-3 pl-2 sm:py-3 sm:px-4 outline-none focus:shadow-md rounded font-semibold"
+          className="text-night text-lg py-3 pl-3 sm:py-3 sm:px-4 outline-none focus:shadow-md rounded font-semibold"
         />
         <Button
           type="submit"
@@ -82,7 +101,7 @@ function Movies() {
 
       {data?.Error && (
         <h2 className="text-tomato text-base sm:text-ld uppercase font-bold text-center mt-8">
-         Couldn&apos;t find movie, try another!
+          Couldn&apos;t find movie, try another!
         </h2>
       )}
 
@@ -94,7 +113,7 @@ function Movies() {
               movieId={movie.imdbID}
               poster={movie.Poster}
               title={movie.Title}
-              year={movie.Year}
+              year={movie.Year.slice(0, 4)}
             />
           ))}
       </div>

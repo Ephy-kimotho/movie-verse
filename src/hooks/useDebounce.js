@@ -4,11 +4,15 @@ function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState("");
 
   useEffect(() => {
-    const id = setTimeout(() => {
-      setDebouncedValue(value);
+    const timeoutId = setTimeout(() => {
+      /* Check if the value is truthy */
+      if (value) {
+        /* If there is a value update debouncedValue */
+        setDebouncedValue(value.trim());
+      }
     }, delay);
 
-    return () => clearTimeout(id);
+    return () => clearTimeout(timeoutId);
   }, [value, delay]);
 
   return debouncedValue;
