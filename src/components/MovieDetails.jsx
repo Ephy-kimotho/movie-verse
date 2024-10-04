@@ -72,21 +72,31 @@ function MovieDetails() {
             />
 
             <ul className="list-none sm:grow bg-lightOrange sm:rounded py-7 px-5">
-              <li className="text-xl sm:text-2xl font-karla text-night">
+              <li className="text-lg sm:text-2xl font-karla text-night">
                 <span className="font-bold italic">Name: </span>
                 {data.Title}
               </li>
-              <li className="text-xl sm:text-2xl font-karla text-night">
+              <li className="text-lg sm:text-2xl font-karla text-night">
                 <span className="font-bold italic">Release year: </span>
                 {data.Year}
               </li>
-              <li className="text-xl sm:text-2xl font-karla text-night">
+              <li className="text-lg sm:text-2xl font-karla text-night">
                 <span className="font-bold italic">Rating: </span>
                 {data.imdbRating}
               </li>
-              <li className="text-xl sm:text-2xl font-karla text-night">
+              <li className="text-lg sm:text-2xl font-karla text-night">
                 <span className="font-bold italic">Genre: </span>
                 {data.Genre}
+              </li>
+
+              <li className="text-lg sm:text-2xl font-karla text-night">
+                <span className="font-bold italic">Type: </span>
+                {data.Type}
+              </li>
+
+              <li className="text-lg sm:text-2xl font-karla text-night">
+                <span className="font-bold italic">Seasons: </span>
+                {data.totalSeasons}
               </li>
             </ul>
           </div>
