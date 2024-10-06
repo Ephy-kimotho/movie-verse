@@ -3,10 +3,11 @@ import Button from "./common/Button";
 import Input from "./common/Input";
 import Textarea from "./common/Textarea";
 import * as Yup from "yup";
+import { toast } from "sonner";
 
 function handleSubmit(values, actions) {
-  console.log(values);
   actions.resetForm();
+  toast.success("Form submitted successfully", { className: "p-4 text-base" });
 }
 
 const contactShema = Yup.object({
@@ -19,7 +20,7 @@ function Contact() {
   return (
     <section className="min-h-screen flex gap-8 flex-col sm:flex-row p-8">
       <div className="text-night font-karla flex-1 bg-lightOrange rounded p-6 h-550">
-        <h2 className="text-3xl sm:text-5xl  uppercase mb-3 font-bold">
+        <h2 className="text-3xl sm:text-5xl uppercase mb-3 font-bold">
           We would love to hear from you.
         </h2>
         <p className="text-lg sm:text-2xl">
@@ -35,7 +36,7 @@ function Contact() {
         validationSchema={contactShema}
         onSubmit={handleSubmit}
       >
-        <Form className="flex-1  w-full">
+        <Form className="flex-1  w-full" autoComplete="off">
           <Input
             name="name"
             label="Name"
