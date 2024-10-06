@@ -28,6 +28,7 @@ This application was developed using:
 - **Tailwind CSS** for styling and responsive design.
 - **Formik** for handling forms.
 - **Yup** for form validation.
+- **Sonner** for toast notifications.
 - **Jest** and **React Testing Library** for testing components.
 
 ### Application Structure
@@ -58,6 +59,7 @@ Throughout this project, I gained valuable insights into:
 - **Efficient Data Handling:** Learned how to use React Query for efficient data fetching and caching.
 - **Tailwind CSS:** Acquired skills in styling components and making them responsive using Tailwind CSS.
 - **Form Handling:** Gained experience using Formik and Yup for managing form state and validation.
+- **Sonner:** Gained experience in using sonner to show toast notifications.
 
 ## 🌟 What I Am Most Proud Of
 
