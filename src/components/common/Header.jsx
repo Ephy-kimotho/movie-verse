@@ -47,8 +47,8 @@ function Header() {
               to="movies"
               className={({ isActive }) =>
                 isActive
-                  ? "text-tomato font-bold text-xl tracking-wide"
-                  : "text-night font-bold text-xl tracking-wide"
+                  ? "text-tomato font-bold text-xl sm:text-xl tracking-wide"
+                  : "text-night font-bold text-xl sm:text-xl tracking-wide"
               }
               onClick={() => setIsOpen(false)}
             >

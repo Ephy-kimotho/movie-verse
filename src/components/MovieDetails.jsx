@@ -94,10 +94,12 @@ function MovieDetails() {
                 {data.Type}
               </li>
 
-              <li className="text-xl sm:text-2xl font-karla text-night">
-                <span className="font-bold italic">Seasons: </span>
-                {data.totalSeasons}
-              </li>
+              {data.totalSeasons && (
+                <li className="text-xl sm:text-2xl font-karla text-night">
+                  <span className="font-bold italic">Seasons: </span>
+                  {data.totalSeasons}
+                </li>
+              )}
             </ul>
           </div>
 
